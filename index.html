@@ -3,29 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Trilha minimalista de fichas de estudo do curso de Informática e Tecnologia, organizada do básico ao avançado." />
+  <meta name="description" content="Fichas de estudo de Informática e Tecnologia organizadas em uma trilha simples, limpa e intuitiva." />
   <title>Fichas de Estudo | Informática e Tecnologia</title>
 
   <style>
     :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --card-soft: #f9fafb;
+      --bg: #f6f7fb;
+      --surface: #ffffff;
+      --surface-soft: #f9fafb;
       --text: #111827;
       --muted: #6b7280;
-      --muted-strong: #4b5563;
+      --muted-strong: #374151;
       --line: #e5e7eb;
-      --line-strong: #d1d5db;
+      --line-strong: #cbd5e1;
       --accent: #2563eb;
       --accent-dark: #1d4ed8;
       --accent-soft: #eff6ff;
-      --highlight: #fff3bf;
+      --success-soft: #ecfdf5;
+      --success: #047857;
       --radius-xl: 24px;
       --radius-lg: 18px;
       --radius-md: 14px;
-      --shadow: 0 18px 46px rgba(17, 24, 39, 0.075);
-      --shadow-soft: 0 8px 24px rgba(17, 24, 39, 0.055);
-      --max: 1180px;
+      --shadow: 0 18px 48px rgba(15, 23, 42, 0.07);
+      --shadow-soft: 0 8px 26px rgba(15, 23, 42, 0.055);
+      --max: 1040px;
     }
 
     * {
@@ -41,11 +42,9 @@
     body {
       min-height: 100vh;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28rem),
-        linear-gradient(180deg, #ffffff 0%, var(--bg) 38%, var(--bg) 100%);
       color: var(--text);
-      line-height: 1.55;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, var(--bg) 100%);
+      line-height: 1.5;
     }
 
     a {
@@ -63,48 +62,122 @@
       cursor: pointer;
     }
 
-    mark {
-      border-radius: 6px;
-      padding: 0 2px;
-      background: var(--highlight);
-      color: inherit;
-    }
-
     .page {
       width: min(100% - 32px, var(--max));
       margin: 0 auto;
-      padding: 34px 0 48px;
+      padding: 36px 0 44px;
     }
 
     .hero {
-      margin-bottom: 28px;
-      text-align: center;
+      display: grid;
+      gap: 18px;
+      margin-bottom: 22px;
     }
 
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      background: var(--surface);
+      color: var(--muted-strong);
+      font-size: 0.82rem;
+      font-weight: 750;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ghost-btn {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 13px;
+      background: var(--surface);
+      color: var(--muted-strong);
+      font-size: 0.84rem;
+      font-weight: 750;
+      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+
+    .ghost-btn:hover,
+    .ghost-btn:focus-visible {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      outline: none;
+    }
 
     h1 {
-      max-width: 860px;
-      margin: 0 auto;
-      font-size: clamp(2rem, 6vw, 3.75rem);
-      line-height: 1;
+      max-width: 760px;
+      font-size: clamp(2.15rem, 5vw, 4rem);
+      line-height: 0.98;
       letter-spacing: -0.06em;
-      text-wrap: balance;
     }
 
     .intro {
-      max-width: 820px;
-      margin: 14px auto 0;
+      max-width: 720px;
       color: var(--muted);
-      font-size: clamp(0.98rem, 2vw, 1.08rem);
+      font-size: clamp(0.98rem, 1.8vw, 1.08rem);
+    }
+
+    .quick-info {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .info-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .info-card strong {
+      display: block;
+      font-size: 1.12rem;
+      letter-spacing: -0.03em;
+    }
+
+    .info-card span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.86rem;
     }
 
     .toolbar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      margin: 22px 0 18px;
+      z-index: 10;
+      margin: 18px 0;
       padding: 10px 0;
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      background: rgba(246, 247, 251, 0.86);
       backdrop-filter: blur(14px);
     }
 
@@ -116,12 +189,13 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
       padding: 10px;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.92);
       box-shadow: var(--shadow);
     }
 
     .search-wrap {
       position: relative;
+      display: block;
     }
 
     .search-icon {
@@ -141,15 +215,19 @@
       border: 1px solid transparent;
       border-radius: 999px;
       padding: 0 16px 0 46px;
-      background: var(--card-soft);
+      background: var(--surface-soft);
       color: var(--text);
       outline: none;
+    }
+
+    .search::placeholder {
+      color: #9ca3af;
     }
 
     .search:focus {
       border-color: var(--accent);
       background: #fff;
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
     }
 
     .clear-btn {
@@ -161,11 +239,11 @@
       color: var(--muted-strong);
       font-size: 0.88rem;
       font-weight: 750;
-      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
     }
 
     .clear-btn:hover,
-    .clear-btn:focus {
+    .clear-btn:focus-visible {
       border-color: var(--accent);
       background: var(--accent-soft);
       color: var(--accent-dark);
@@ -174,38 +252,32 @@
 
     .result-line {
       min-height: 22px;
-      margin-top: 10px;
+      margin-top: 9px;
       padding-left: 4px;
       color: var(--muted);
       font-size: 0.9rem;
     }
 
-    .path {
-      position: relative;
+    .stage-list {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      align-items: start;
+      gap: 12px;
     }
 
     .stage {
-      position: relative;
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
-      background: var(--card);
+      background: var(--surface);
       box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+      overflow: clip;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .stage:hover {
       border-color: var(--line-strong);
-      box-shadow: var(--shadow);
-      transform: translateY(-1px);
     }
 
     .stage[open] {
-      border-color: color-mix(in srgb, var(--accent) 32%, var(--line));
+      border-color: rgba(37, 99, 235, 0.28);
       box-shadow: var(--shadow);
     }
 
@@ -213,11 +285,10 @@
       list-style: none;
       cursor: pointer;
       display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 12px;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
       align-items: center;
-      padding: 16px;
-      background: #fff;
+      padding: 18px;
       user-select: none;
     }
 
@@ -230,28 +301,43 @@
       height: 42px;
       display: grid;
       place-items: center;
-      border-radius: 15px;
+      border-radius: 14px;
       background: var(--accent-soft);
       color: var(--accent-dark);
       font-weight: 850;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
     }
 
-    .stage-title {
+    .stage-main {
       min-width: 0;
     }
 
+    .stage-kicker {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
     .stage h2 {
-      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
-      line-height: 1.16;
+      font-size: clamp(1.06rem, 2.2vw, 1.28rem);
+      line-height: 1.18;
       letter-spacing: -0.035em;
-      text-wrap: balance;
     }
 
     .stage p {
-      margin-top: 4px;
+      margin-top: 5px;
       color: var(--muted);
-      font-size: 0.91rem;
+      font-size: 0.92rem;
+    }
+
+    .stage-side {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .stage-count {
@@ -262,18 +348,18 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 0 10px;
+      background: var(--surface-soft);
       color: var(--muted-strong);
-      background: var(--card-soft);
       font-size: 0.78rem;
-      font-weight: 750;
+      font-weight: 800;
       white-space: nowrap;
     }
 
     .chevron {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       color: var(--muted);
-      transition: transform 0.18s ease;
+      transition: transform 0.18s ease, color 0.18s ease;
     }
 
     .stage[open] .chevron {
@@ -281,27 +367,19 @@
       color: var(--accent);
     }
 
-    .stage-side {
-      grid-column: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 2px;
-    }
-
     .lessons {
       display: grid;
       border-top: 1px solid var(--line);
-      background: linear-gradient(180deg, #fff, var(--card-soft));
+      background: var(--surface-soft);
     }
 
     .lesson {
       display: grid;
-      grid-template-columns: 34px 1fr;
+      grid-template-columns: auto 1fr auto;
       gap: 12px;
-      align-items: start;
-      padding: 14px 16px;
+      align-items: center;
+      min-height: 72px;
+      padding: 14px 18px;
       border-bottom: 1px solid var(--line);
       transition: background 0.15s ease;
     }
@@ -310,62 +388,61 @@
       border-bottom: 0;
     }
 
-    .lesson:hover {
-      background: #ffffff;
+    .lesson:hover,
+    .lesson:focus-visible {
+      background: #fff;
+      outline: none;
     }
 
     .lesson-order {
+      width: 30px;
       color: var(--muted);
-      font-size: 0.88rem;
-      font-weight: 750;
+      font-size: 0.82rem;
+      font-weight: 850;
+      text-align: center;
     }
 
     .lesson-title {
       display: block;
       color: var(--text);
-      font-weight: 800;
-      line-height: 1.24;
+      font-weight: 820;
+      line-height: 1.22;
     }
 
     .lesson-note {
       display: block;
       margin-top: 3px;
       color: var(--muted);
-      font-size: 0.86rem;
+      font-size: 0.87rem;
     }
 
-    .open-link {
-      grid-column: 2;
-      width: fit-content;
-      min-height: 34px;
+    .lesson-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-height: 36px;
       border: 1px solid var(--line-strong);
       border-radius: 999px;
-      margin-top: 6px;
-      padding: 0 13px;
-      color: var(--accent-dark);
+      padding: 0 12px;
       background: #fff;
-      font-size: 0.84rem;
+      color: var(--accent-dark);
+      font-size: 0.83rem;
       font-weight: 800;
       white-space: nowrap;
-      transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+      transition: border-color 0.15s ease, background 0.15s ease;
     }
 
-    .open-link:hover,
-    .open-link:focus {
+    .lesson:hover .lesson-cta,
+    .lesson:focus-visible .lesson-cta {
       border-color: var(--accent);
       background: var(--accent-soft);
-      transform: translateY(-1px);
-      outline: none;
     }
 
     .empty {
       display: none;
       border: 1px dashed var(--line-strong);
       border-radius: var(--radius-xl);
-      padding: 30px;
+      padding: 28px;
       background: #fff;
       color: var(--muted);
       text-align: center;
@@ -377,26 +454,37 @@
     }
 
     footer {
-      margin-top: 28px;
+      margin-top: 24px;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       text-align: center;
     }
 
-    @media (max-width: 900px) {
-      .path {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 700px) {
+    @media (max-width: 760px) {
       .page {
-        width: min(100% - 20px, var(--max));
-        padding-top: 30px;
+        width: min(100% - 22px, var(--max));
+        padding-top: 28px;
+      }
+
+      .hero-top {
+        align-items: flex-start;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      .ghost-btn {
+        flex: 1;
+      }
+
+      .quick-info {
+        grid-template-columns: 1fr;
       }
 
       .toolbar {
-        margin-top: 22px;
+        position: static;
+        padding: 0;
       }
 
       .search-panel {
@@ -409,31 +497,35 @@
       }
 
       .stage summary {
-        grid-template-columns: 40px 1fr;
-        gap: 12px;
-        padding: 15px;
-      }
-
-      .stage-number {
-        width: 40px;
-        height: 40px;
-        border-radius: 14px;
+        grid-template-columns: auto 1fr;
+        padding: 16px;
       }
 
       .stage-side {
-        grid-column: 2;
+        grid-column: 1 / -1;
         justify-content: space-between;
+        padding-left: 56px;
       }
 
       .lesson {
-        grid-template-columns: 34px 1fr;
-        padding: 15px;
+        grid-template-columns: auto 1fr;
+        align-items: start;
+        padding: 15px 16px;
       }
 
-      .open-link {
+      .lesson-cta {
         grid-column: 2;
         width: fit-content;
-        margin-top: 4px;
+        margin-top: 3px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
       }
     }
   </style>
@@ -442,7 +534,33 @@
 <body>
   <main class="page">
     <header class="hero">
-      <h1>Fichas de Estudo</h1>
+      <div class="hero-top">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> Trilha de aprendizagem</span>
+        <div class="actions" aria-label="Ações rápidas">
+          <button class="ghost-btn" id="openAll" type="button">Abrir todas</button>
+          <button class="ghost-btn" id="closeAll" type="button">Recolher</button>
+        </div>
+      </div>
+
+      <div>
+        <h1>Fichas de Estudo</h1>
+        <p class="intro">Escolha uma etapa, veja as fichas disponíveis e acesse o material em poucos cliques. A organização segue uma progressão simples: do básico aos temas atuais.</p>
+      </div>
+
+      <section class="quick-info" aria-label="Resumo da trilha">
+        <div class="info-card">
+          <strong id="stageTotal">7</strong>
+          <span>etapas organizadas</span>
+        </div>
+        <div class="info-card">
+          <strong id="lessonTotal">20</strong>
+          <span>fichas disponíveis</span>
+        </div>
+        <div class="info-card">
+          <strong>Básico → Atual</strong>
+          <span>sequência sugerida</span>
+        </div>
+      </section>
     </header>
 
     <section class="toolbar" aria-label="Busca de fichas">
@@ -451,21 +569,21 @@
           <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="m21 21-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
-          <input class="search" id="searchInput" type="search" placeholder="Buscar por tema, ferramenta ou tecnologia..." autocomplete="off" />
+          <input class="search" id="searchInput" type="search" placeholder="Buscar ficha por tema, ferramenta ou tecnologia..." autocomplete="off" />
         </label>
         <button class="clear-btn" id="clearSearch" type="button">Limpar busca</button>
       </div>
-      <p class="result-line" id="resultLine" aria-live="polite"></p>
+      <p class="result-line" id="resultLine" aria-live="polite">Clique em uma etapa para visualizar as fichas.</p>
     </section>
 
-    <section class="path" id="path" aria-label="Trilha cronológica de fichas de estudo"></section>
+    <section class="stage-list" id="stageList" aria-label="Etapas e fichas de estudo"></section>
 
     <section class="empty" id="emptyState" aria-live="polite">
-      Nenhuma ficha encontrada. Tente buscar por outro termo, como “Word”, “internet”, “segurança”, “planilhas”, “nuvem” ou “inteligência artificial”.
+      Nenhuma ficha encontrada. Tente buscar por outro termo, como Word, internet, segurança, planilhas, nuvem ou inteligência artificial.
     </section>
 
     <footer>
-      Material organizado do nível iniciante ao avançado.
+      Material organizado para consulta rápida e estudo progressivo.
     </footer>
   </main>
 
@@ -473,7 +591,7 @@
     const stages = [
       {
         title: "Primeiro contato com o computador",
-        description: "Comece entendendo o ambiente digital antes de usar ferramentas específicas.",
+        description: "Entenda o ambiente digital antes de usar ferramentas específicas.",
         terms: "computador informática básica arquivos programas periféricos sistema operacional windows iniciante",
         lessons: [
           {
@@ -498,7 +616,7 @@
       },
       {
         title: "Uso básico de dispositivos móveis",
-        description: "Depois do computador, avance para os smartphones e seus sistemas.",
+        description: "Avance para smartphones, aplicativos e configurações principais.",
         terms: "celular smartphone telefone android ios iphone aplicativos configurações móvel",
         lessons: [
           {
@@ -548,7 +666,7 @@
       },
       {
         title: "Produção de textos e apresentações",
-        description: "Agora o aluno já pode criar documentos e organizar ideias visualmente.",
+        description: "Crie documentos e organize ideias visualmente.",
         terms: "texto documento apresentação slide word powerpoint google docs apresentações microsoft escrita produção",
         lessons: [
           {
@@ -579,7 +697,7 @@
       },
       {
         title: "Planilhas e organização de dados",
-        description: "Depois dos textos, avance para tabelas, cálculos e interpretação de informações.",
+        description: "Use tabelas, cálculos e informações de forma organizada.",
         terms: "planilha planilhas dados tabela cálculo fórmula excel google sheets organização análise",
         lessons: [
           {
@@ -598,7 +716,7 @@
       },
       {
         title: "Nuvem e serviços online",
-        description: "Entenda como arquivos, plataformas e colaboração funcionam pela internet.",
+        description: "Entenda arquivos, plataformas e colaboração pela internet.",
         terms: "nuvem cloud computing armazenamento online sincronização colaboração drive onedrive serviços",
         lessons: [
           {
@@ -611,7 +729,7 @@
       },
       {
         title: "Tecnologias atuais",
-        description: "Finalize a trilha com temas que explicam o presente e o futuro digital.",
+        description: "Conheça temas que explicam o presente e o futuro digital.",
         terms: "tecnologia atual inteligência artificial ia iot realidade virtual aumentada criptomoeda economia digital futuro",
         lessons: [
           {
@@ -642,11 +760,20 @@
       }
     ];
 
-    const path = document.getElementById("path");
+    const stageList = document.getElementById("stageList");
     const searchInput = document.getElementById("searchInput");
     const clearSearch = document.getElementById("clearSearch");
     const emptyState = document.getElementById("emptyState");
     const resultLine = document.getElementById("resultLine");
+    const openAll = document.getElementById("openAll");
+    const closeAll = document.getElementById("closeAll");
+    const stageTotal = document.getElementById("stageTotal");
+    const lessonTotal = document.getElementById("lessonTotal");
+    let isBulkAction = false;
+
+    const totalLessons = stages.reduce((sum, stage) => sum + stage.lessons.length, 0);
+    stageTotal.textContent = stages.length;
+    lessonTotal.textContent = totalLessons;
 
     function normalizeText(text) {
       return text
@@ -657,15 +784,6 @@
         .replace(/[^a-z0-9\s]/g, " ")
         .replace(/\s+/g, " ")
         .trim();
-    }
-
-    function escapeHtml(text) {
-      return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
     }
 
     function getTokens(query) {
@@ -680,28 +798,23 @@
       return tokens.every((token) => normalized.includes(token));
     }
 
-    function highlightText(text, tokens) {
-      const escaped = escapeHtml(text);
-      if (!tokens.length) return escaped;
-
-      const validTokens = [...new Set(tokens)]
-        .filter((token) => token.length > 1)
-        .sort((a, b) => b.length - a.length);
-
-      if (!validTokens.length) return escaped;
-
-      let output = escaped;
-      validTokens.forEach((token) => {
-        const safeToken = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const regex = new RegExp(`(${safeToken})`, "gi");
-        output = output.replace(regex, "<mark>$1</mark>");
-      });
-
-      return output;
-    }
-
     function lessonSearchContent(stage, lesson) {
       return `${stage.title} ${stage.description} ${stage.terms} ${lesson.title} ${lesson.note} ${lesson.terms}`;
+    }
+
+    function closeOtherStages(currentStage) {
+      if (isBulkAction || searchInput.value.trim()) return;
+      document.querySelectorAll(".stage[open]").forEach((stage) => {
+        if (stage !== currentStage) stage.removeAttribute("open");
+      });
+    }
+
+    function bindAccordionBehavior() {
+      document.querySelectorAll(".stage").forEach((stage) => {
+        stage.addEventListener("toggle", () => {
+          if (stage.open) closeOtherStages(stage);
+        });
+      });
     }
 
     function render() {
@@ -712,25 +825,24 @@
 
       const html = stages.map((stage, stageIndex) => {
         const stageMatches = matchesSearch(`${stage.title} ${stage.description} ${stage.terms}`, tokens);
-        const filteredLessons = stage.lessons.filter((lesson) => {
-          return stageMatches || matchesSearch(lessonSearchContent(stage, lesson), tokens);
-        });
+        const filteredLessons = stage.lessons.filter((lesson) => stageMatches || matchesSearch(lessonSearchContent(stage, lesson), tokens));
 
         if (!filteredLessons.length) return "";
 
         visibleStages += 1;
         visibleLessons += filteredLessons.length;
 
-        const shouldOpen = tokens.length > 0 ? "open" : "";
+        const shouldOpen = tokens.length ? "open" : "";
         const lessonWord = filteredLessons.length === 1 ? "ficha" : "fichas";
 
         return `
           <details class="stage" ${shouldOpen}>
             <summary>
-              <span class="stage-number">${stageIndex + 1}</span>
-              <div class="stage-title">
-                <h2>${highlightText(stage.title, tokens)}</h2>
-                <p>${highlightText(stage.description, tokens)}</p>
+              <span class="stage-number">${String(stageIndex + 1).padStart(2, "0")}</span>
+              <div class="stage-main">
+                <span class="stage-kicker">Etapa ${stageIndex + 1}</span>
+                <h2>${stage.title}</h2>
+                <p>${stage.description}</p>
               </div>
               <div class="stage-side">
                 <span class="stage-count">${filteredLessons.length} ${lessonWord}</span>
@@ -741,25 +853,26 @@
             </summary>
             <div class="lessons">
               ${filteredLessons.map((lesson, lessonIndex) => `
-                <div class="lesson">
+                <a class="lesson" href="${lesson.url}" target="_blank" rel="noopener noreferrer">
                   <span class="lesson-order">${String(lessonIndex + 1).padStart(2, "0")}</span>
-                  <div>
-                    <span class="lesson-title">${highlightText(lesson.title, tokens)}</span>
-                    <span class="lesson-note">${highlightText(lesson.note, tokens)}</span>
-                  </div>
-                  <a class="open-link" href="${lesson.url}" target="_blank" rel="noopener noreferrer">Acessar</a>
-                </div>
+                  <span>
+                    <span class="lesson-title">${lesson.title}</span>
+                    <span class="lesson-note">${lesson.note}</span>
+                  </span>
+                  <span class="lesson-cta">Abrir</span>
+                </a>
               `).join("")}
             </div>
           </details>
         `;
       }).join("");
 
-      path.innerHTML = html;
+      stageList.innerHTML = html;
+      bindAccordionBehavior();
       emptyState.classList.toggle("visible", visibleLessons === 0);
 
       if (!tokens.length) {
-        resultLine.textContent = "";
+        resultLine.textContent = "Clique em uma etapa para visualizar as fichas.";
       } else if (visibleLessons === 0) {
         resultLine.textContent = "Nenhum resultado encontrado.";
       } else {
@@ -775,6 +888,22 @@
       searchInput.value = "";
       searchInput.focus();
       render();
+    });
+
+    openAll.addEventListener("click", () => {
+      isBulkAction = true;
+      document.querySelectorAll(".stage").forEach((stage) => {
+        stage.setAttribute("open", "");
+      });
+      isBulkAction = false;
+    });
+
+    closeAll.addEventListener("click", () => {
+      isBulkAction = true;
+      document.querySelectorAll(".stage").forEach((stage) => {
+        stage.removeAttribute("open");
+      });
+      isBulkAction = false;
     });
 
     render();
