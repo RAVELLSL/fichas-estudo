@@ -3,36 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Fichas de estudo de Informática e Tecnologia organizadas em uma trilha simples, limpa e intuitiva." />
+  <meta name="description" content="Fichas de estudo de Informática e Tecnologia em layout minimalista com duas colunas." />
   <title>Fichas de Estudo | Informática e Tecnologia</title>
 
   <style>
     :root {
-      --bg: #f6f7fb;
-      --surface: #ffffff;
-      --surface-soft: #f9fafb;
-      --text: #111827;
-      --muted: #6b7280;
-      --muted-strong: #374151;
-      --line: #e5e7eb;
-      --line-strong: #cbd5e1;
-      --accent: #2563eb;
-      --accent-dark: #1d4ed8;
-      --accent-soft: #eff6ff;
-      --success-soft: #ecfdf5;
-      --success: #047857;
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --radius-md: 14px;
-      --shadow: 0 18px 48px rgba(15, 23, 42, 0.07);
-      --shadow-soft: 0 8px 26px rgba(15, 23, 42, 0.055);
-      --max: 1040px;
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --text: #151922;
+      --muted: #687083;
+      --line: #e4e7ec;
+      --line-strong: #cfd5df;
+      --accent: #2457d6;
+      --accent-soft: #eef4ff;
+      --radius: 18px;
+      --shadow: 0 10px 26px rgba(17, 24, 39, 0.055);
+      --max: 1080px;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     html {
@@ -40,10 +30,11 @@
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, var(--bg) 100%);
+      background: var(--bg);
       line-height: 1.5;
     }
 
@@ -58,330 +49,301 @@
     }
 
     button {
-      border: 0;
       cursor: pointer;
     }
 
     .page {
       width: min(100% - 32px, var(--max));
       margin: 0 auto;
-      padding: 36px 0 44px;
+      padding: 38px 0 40px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 720;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 820;
     }
 
     .hero {
-      display: grid;
-      gap: 18px;
-      margin-bottom: 22px;
-    }
-
-    .hero-top {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      width: fit-content;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 7px 12px;
-      background: var(--surface);
-      color: var(--muted-strong);
-      font-size: 0.82rem;
-      font-weight: 750;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .eyebrow-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .ghost-btn {
-      min-height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0 13px;
-      background: var(--surface);
-      color: var(--muted-strong);
-      font-size: 0.84rem;
-      font-weight: 750;
-      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
-    }
-
-    .ghost-btn:hover,
-    .ghost-btn:focus-visible {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--accent-dark);
-      outline: none;
+      margin-bottom: 20px;
     }
 
     h1 {
-      max-width: 760px;
-      font-size: clamp(2.15rem, 5vw, 4rem);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(2.15rem, 5vw, 3.65rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
     }
 
     .intro {
-      max-width: 720px;
+      max-width: 660px;
+      margin: 13px 0 0;
       color: var(--muted);
-      font-size: clamp(0.98rem, 1.8vw, 1.08rem);
+      font-size: 1.01rem;
     }
 
-    .quick-info {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 2px;
-    }
-
-    .info-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 14px 16px;
-      background: rgba(255, 255, 255, 0.82);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .info-card strong {
-      display: block;
-      font-size: 1.12rem;
-      letter-spacing: -0.03em;
-    }
-
-    .info-card span {
-      display: block;
-      margin-top: 2px;
+    .summary {
+      margin-top: 16px;
       color: var(--muted);
-      font-size: 0.86rem;
+      font-size: 0.91rem;
     }
 
-    .toolbar {
+    .summary strong {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .search-area {
       position: sticky;
       top: 0;
-      z-index: 10;
-      margin: 18px 0;
-      padding: 10px 0;
-      background: rgba(246, 247, 251, 0.86);
-      backdrop-filter: blur(14px);
+      z-index: 5;
+      padding: 10px 0 14px;
+      background: rgba(247, 248, 250, 0.93);
+      backdrop-filter: blur(12px);
     }
 
-    .search-panel {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
+    .search-box {
+      display: flex;
       align-items: center;
+      gap: 10px;
       border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.92);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      background: var(--card);
       box-shadow: var(--shadow);
     }
 
-    .search-wrap {
-      position: relative;
-      display: block;
-    }
-
     .search-icon {
-      position: absolute;
-      top: 50%;
-      left: 16px;
-      width: 18px;
-      height: 18px;
-      transform: translateY(-50%);
+      flex: 0 0 auto;
+      width: 20px;
+      height: 20px;
       color: var(--muted);
-      pointer-events: none;
     }
 
     .search {
       width: 100%;
-      min-height: 48px;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      padding: 0 16px 0 46px;
-      background: var(--surface-soft);
+      min-height: 42px;
+      border: 0;
+      outline: 0;
+      background: transparent;
       color: var(--text);
-      outline: none;
+      font-size: 0.98rem;
     }
 
     .search::placeholder {
-      color: #9ca3af;
-    }
-
-    .search:focus {
-      border-color: var(--accent);
-      background: #fff;
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+      color: #98a2b3;
     }
 
     .clear-btn {
-      min-height: 48px;
-      border: 1px solid var(--line);
+      flex: 0 0 auto;
+      min-height: 34px;
+      border: 0;
       border-radius: 999px;
-      padding: 0 16px;
-      background: #fff;
-      color: var(--muted-strong);
-      font-size: 0.88rem;
-      font-weight: 750;
-      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+      padding: 0 12px;
+      background: var(--bg);
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 720;
     }
 
     .clear-btn:hover,
     .clear-btn:focus-visible {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--accent-dark);
+      color: var(--text);
       outline: none;
     }
 
     .result-line {
       min-height: 22px;
-      margin-top: 9px;
-      padding-left: 4px;
+      margin: 8px 0 0;
       color: var(--muted);
       font-size: 0.9rem;
     }
 
+    .two-column-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.45fr);
+      gap: 16px;
+      align-items: start;
+      margin-top: 8px;
+    }
+
+    .stage-column,
+    .lesson-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 4px 14px rgba(17, 24, 39, 0.035);
+    }
+
+    .stage-column {
+      overflow: hidden;
+    }
+
+    .column-head {
+      padding: 15px 16px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .column-head h2 {
+      margin: 0;
+      font-size: 0.98rem;
+      letter-spacing: -0.02em;
+    }
+
+    .column-head p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
     .stage-list {
       display: grid;
-      gap: 12px;
+      gap: 0;
     }
 
-    .stage {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      background: var(--surface);
-      box-shadow: var(--shadow-soft);
-      overflow: clip;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .stage:hover {
-      border-color: var(--line-strong);
-    }
-
-    .stage[open] {
-      border-color: rgba(37, 99, 235, 0.28);
-      box-shadow: var(--shadow);
-    }
-
-    .stage summary {
-      list-style: none;
-      cursor: pointer;
+    .stage-button {
+      width: 100%;
       display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 14px;
+      grid-template-columns: 34px 1fr auto;
+      gap: 12px;
       align-items: center;
-      padding: 18px;
-      user-select: none;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      padding: 13px 14px;
+      background: #fff;
+      color: var(--text);
+      text-align: left;
     }
 
-    .stage summary::-webkit-details-marker {
-      display: none;
+    .stage-button:last-child {
+      border-bottom: 0;
     }
 
-    .stage-number {
-      width: 42px;
-      height: 42px;
+    .stage-button:hover,
+    .stage-button:focus-visible {
+      background: #fcfcfd;
+      outline: none;
+    }
+
+    .stage-button.is-active {
+      background: var(--accent-soft);
+    }
+
+    .number {
+      width: 34px;
+      height: 34px;
       display: grid;
       place-items: center;
-      border-radius: 14px;
-      background: var(--accent-soft);
-      color: var(--accent-dark);
-      font-weight: 850;
-      letter-spacing: -0.04em;
+      border-radius: 11px;
+      background: #f2f4f7;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 820;
     }
 
-    .stage-main {
+    .stage-button.is-active .number {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .stage-name {
       min-width: 0;
     }
 
-    .stage-kicker {
+    .stage-name strong {
       display: block;
-      margin-bottom: 3px;
+      font-size: 0.93rem;
+      line-height: 1.22;
+      letter-spacing: -0.015em;
+    }
+
+    .stage-name span {
+      display: block;
+      margin-top: 2px;
       color: var(--muted);
-      font-size: 0.76rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .stage h2 {
-      font-size: clamp(1.06rem, 2.2vw, 1.28rem);
-      line-height: 1.18;
-      letter-spacing: -0.035em;
-    }
-
-    .stage p {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .stage-side {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .stage-count {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 32px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0 10px;
-      background: var(--surface-soft);
-      color: var(--muted-strong);
+      color: var(--muted);
       font-size: 0.78rem;
-      font-weight: 800;
+      font-weight: 760;
       white-space: nowrap;
     }
 
-    .chevron {
-      width: 22px;
-      height: 22px;
-      color: var(--muted);
-      transition: transform 0.18s ease, color 0.18s ease;
+    .lesson-panel {
+      min-height: 360px;
+      overflow: hidden;
     }
 
-    .stage[open] .chevron {
-      transform: rotate(180deg);
+    .lesson-head {
+      padding: 18px 18px 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .lesson-kicker {
+      display: inline-flex;
+      margin-bottom: 8px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      background: var(--accent-soft);
       color: var(--accent);
+      font-size: 0.74rem;
+      font-weight: 820;
     }
 
-    .lessons {
+    .lesson-head h2 {
+      margin: 0;
+      font-size: clamp(1.28rem, 2vw, 1.7rem);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+    }
+
+    .lesson-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .lesson-list {
       display: grid;
-      border-top: 1px solid var(--line);
-      background: var(--surface-soft);
     }
 
     .lesson {
       display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 12px;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
       align-items: center;
-      min-height: 72px;
-      padding: 14px 18px;
+      padding: 15px 18px;
       border-bottom: 1px solid var(--line);
-      transition: background 0.15s ease;
+      background: #fff;
     }
 
     .lesson:last-child {
@@ -390,63 +352,39 @@
 
     .lesson:hover,
     .lesson:focus-visible {
-      background: #fff;
+      background: #fcfcfd;
       outline: none;
-    }
-
-    .lesson-order {
-      width: 30px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 850;
-      text-align: center;
     }
 
     .lesson-title {
       display: block;
-      color: var(--text);
-      font-weight: 820;
-      line-height: 1.22;
+      font-weight: 780;
+      line-height: 1.24;
     }
 
     .lesson-note {
       display: block;
       margin-top: 3px;
       color: var(--muted);
-      font-size: 0.87rem;
+      font-size: 0.88rem;
     }
 
-    .lesson-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 36px;
-      border: 1px solid var(--line-strong);
-      border-radius: 999px;
-      padding: 0 12px;
-      background: #fff;
-      color: var(--accent-dark);
-      font-size: 0.83rem;
-      font-weight: 800;
+    .open-label {
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 780;
       white-space: nowrap;
-      transition: border-color 0.15s ease, background 0.15s ease;
-    }
-
-    .lesson:hover .lesson-cta,
-    .lesson:focus-visible .lesson-cta {
-      border-color: var(--accent);
-      background: var(--accent-soft);
     }
 
     .empty {
       display: none;
+      margin-top: 12px;
       border: 1px dashed var(--line-strong);
-      border-radius: var(--radius-xl);
-      padding: 28px;
+      border-radius: var(--radius);
+      padding: 24px;
       background: #fff;
       color: var(--muted);
       text-align: center;
-      box-shadow: var(--shadow-soft);
     }
 
     .empty.visible {
@@ -454,76 +392,70 @@
     }
 
     footer {
-      margin-top: 24px;
+      margin-top: 28px;
       color: var(--muted);
       font-size: 0.86rem;
       text-align: center;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 860px) {
+      .two-column-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-panel {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
       .page {
         width: min(100% - 22px, var(--max));
-        padding-top: 28px;
+        padding-top: 24px;
       }
 
-      .hero-top {
+      .topbar {
         align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 24px;
       }
 
-      .actions {
-        width: 100%;
-      }
-
-      .ghost-btn {
-        flex: 1;
-      }
-
-      .quick-info {
-        grid-template-columns: 1fr;
-      }
-
-      .toolbar {
+      .search-area {
         position: static;
-        padding: 0;
+        padding-top: 0;
       }
 
-      .search-panel {
-        grid-template-columns: 1fr;
-        border-radius: 20px;
+      .search-box {
+        align-items: stretch;
+        display: grid;
+        grid-template-columns: auto 1fr;
       }
 
       .clear-btn {
-        width: 100%;
-      }
-
-      .stage summary {
-        grid-template-columns: auto 1fr;
-        padding: 16px;
-      }
-
-      .stage-side {
         grid-column: 1 / -1;
-        justify-content: space-between;
-        padding-left: 56px;
+        width: 100%;
+        min-height: 38px;
+      }
+
+      .stage-button {
+        grid-template-columns: 34px 1fr;
+      }
+
+      .stage-count {
+        grid-column: 2;
       }
 
       .lesson {
-        grid-template-columns: auto 1fr;
-        align-items: start;
-        padding: 15px 16px;
+        grid-template-columns: 1fr;
       }
 
-      .lesson-cta {
-        grid-column: 2;
+      .open-label {
         width: fit-content;
-        margin-top: 3px;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         scroll-behavior: auto !important;
         transition: none !important;
       }
@@ -533,58 +465,53 @@
 
 <body>
   <main class="page">
+    <div class="topbar">
+      <div class="brand">
+        <span class="brand-mark">FT</span>
+        <span>Informática e Tecnologia</span>
+      </div>
+    </div>
+
     <header class="hero">
-      <div class="hero-top">
-        <span class="eyebrow"><span class="eyebrow-dot"></span> Trilha de aprendizagem</span>
-        <div class="actions" aria-label="Ações rápidas">
-          <button class="ghost-btn" id="openAll" type="button">Abrir todas</button>
-          <button class="ghost-btn" id="closeAll" type="button">Recolher</button>
-        </div>
-      </div>
-
-      <div>
-        <h1>Fichas de Estudo</h1>
-        <p class="intro">Escolha uma etapa, veja as fichas disponíveis e acesse o material em poucos cliques. A organização segue uma progressão simples: do básico aos temas atuais.</p>
-      </div>
-
-      <section class="quick-info" aria-label="Resumo da trilha">
-        <div class="info-card">
-          <strong id="stageTotal">7</strong>
-          <span>etapas organizadas</span>
-        </div>
-        <div class="info-card">
-          <strong id="lessonTotal">20</strong>
-          <span>fichas disponíveis</span>
-        </div>
-        <div class="info-card">
-          <strong>Básico → Atual</strong>
-          <span>sequência sugerida</span>
-        </div>
-      </section>
+      <h1>Fichas de Estudo</h1>
+      <p class="summary"><strong id="stageTotal">7</strong> etapas · <strong id="lessonTotal">20</strong> fichas · sequência do básico ao atual</p>
     </header>
 
-    <section class="toolbar" aria-label="Busca de fichas">
-      <div class="search-panel">
-        <label class="search-wrap" for="searchInput">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="m21 21-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
-          <input class="search" id="searchInput" type="search" placeholder="Buscar ficha por tema, ferramenta ou tecnologia..." autocomplete="off" />
-        </label>
-        <button class="clear-btn" id="clearSearch" type="button">Limpar busca</button>
+    <section class="search-area" aria-label="Busca de fichas">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m21 21-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <input class="search" id="searchInput" type="search" placeholder="Buscar por Word, segurança, planilhas, nuvem, IA..." autocomplete="off" />
+        <button class="clear-btn" id="clearSearch" type="button">Limpar</button>
       </div>
-      <p class="result-line" id="resultLine" aria-live="polite">Clique em uma etapa para visualizar as fichas.</p>
+      <p class="result-line" id="resultLine" aria-live="polite">Selecione uma etapa à esquerda para ver as fichas.</p>
     </section>
 
-    <section class="stage-list" id="stageList" aria-label="Etapas e fichas de estudo"></section>
+    <section class="two-column-layout" id="twoColumnLayout" aria-label="Etapas e fichas de estudo">
+      <aside class="stage-column" aria-label="Etapas da trilha">
+        <div class="column-head">
+          <h2>Etapas</h2>
+          <p>Escolha uma categoria.</p>
+        </div>
+        <div class="stage-list" id="stageList"></div>
+      </aside>
+
+      <section class="lesson-panel" id="lessonPanel" aria-label="Fichas da etapa selecionada">
+        <div class="lesson-head">
+          <span class="lesson-kicker" id="selectedKicker">Etapa</span>
+          <h2 id="selectedTitle"></h2>
+          <p id="selectedDescription"></p>
+        </div>
+        <div class="lesson-list" id="lessonList"></div>
+      </section>
+    </section>
 
     <section class="empty" id="emptyState" aria-live="polite">
-      Nenhuma ficha encontrada. Tente buscar por outro termo, como Word, internet, segurança, planilhas, nuvem ou inteligência artificial.
+      Nenhuma ficha encontrada. Tente buscar por outro termo.
     </section>
 
-    <footer>
-      Material organizado para consulta rápida e estudo progressivo.
-    </footer>
+    <footer>Material organizado para estudo progressivo e consulta rápida.</footer>
   </main>
 
   <script>
@@ -761,15 +688,20 @@
     ];
 
     const stageList = document.getElementById("stageList");
+    const lessonList = document.getElementById("lessonList");
     const searchInput = document.getElementById("searchInput");
     const clearSearch = document.getElementById("clearSearch");
     const emptyState = document.getElementById("emptyState");
     const resultLine = document.getElementById("resultLine");
-    const openAll = document.getElementById("openAll");
-    const closeAll = document.getElementById("closeAll");
     const stageTotal = document.getElementById("stageTotal");
     const lessonTotal = document.getElementById("lessonTotal");
-    let isBulkAction = false;
+    const twoColumnLayout = document.getElementById("twoColumnLayout");
+    const lessonPanel = document.getElementById("lessonPanel");
+    const selectedKicker = document.getElementById("selectedKicker");
+    const selectedTitle = document.getElementById("selectedTitle");
+    const selectedDescription = document.getElementById("selectedDescription");
+
+    let selectedStageIndex = 0;
 
     const totalLessons = stages.reduce((sum, stage) => sum + stage.lessons.length, 0);
     stageTotal.textContent = stages.length;
@@ -780,7 +712,7 @@
         .toString()
         .toLowerCase()
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[̀-ͯ]/g, "")
         .replace(/[^a-z0-9\s]/g, " ")
         .replace(/\s+/g, " ")
         .trim();
@@ -802,83 +734,85 @@
       return `${stage.title} ${stage.description} ${stage.terms} ${lesson.title} ${lesson.note} ${lesson.terms}`;
     }
 
-    function closeOtherStages(currentStage) {
-      if (isBulkAction || searchInput.value.trim()) return;
-      document.querySelectorAll(".stage[open]").forEach((stage) => {
-        if (stage !== currentStage) stage.removeAttribute("open");
-      });
+    function getFilteredStages(tokens) {
+      return stages
+        .map((stage, index) => {
+          const stageMatches = matchesSearch(`${stage.title} ${stage.description} ${stage.terms}`, tokens);
+          const lessons = stage.lessons.filter((lesson) => stageMatches || matchesSearch(lessonSearchContent(stage, lesson), tokens));
+          return { stage, index, lessons };
+        })
+        .filter((item) => item.lessons.length);
     }
 
-    function bindAccordionBehavior() {
-      document.querySelectorAll(".stage").forEach((stage) => {
-        stage.addEventListener("toggle", () => {
-          if (stage.open) closeOtherStages(stage);
-        });
-      });
+    function selectStage(index) {
+      selectedStageIndex = index;
+      render();
     }
 
     function render() {
       const query = searchInput.value.trim();
       const tokens = getTokens(query);
-      let visibleLessons = 0;
-      let visibleStages = 0;
+      const filteredStages = getFilteredStages(tokens);
+      const visibleLessons = filteredStages.reduce((sum, item) => sum + item.lessons.length, 0);
 
-      const html = stages.map((stage, stageIndex) => {
-        const stageMatches = matchesSearch(`${stage.title} ${stage.description} ${stage.terms}`, tokens);
-        const filteredLessons = stage.lessons.filter((lesson) => stageMatches || matchesSearch(lessonSearchContent(stage, lesson), tokens));
+      if (!filteredStages.length) {
+        stageList.innerHTML = "";
+        lessonList.innerHTML = "";
+        twoColumnLayout.style.display = "none";
+        emptyState.classList.add("visible");
+        resultLine.textContent = "Nenhum resultado encontrado.";
+        return;
+      }
 
-        if (!filteredLessons.length) return "";
+      twoColumnLayout.style.display = "grid";
+      emptyState.classList.remove("visible");
 
-        visibleStages += 1;
-        visibleLessons += filteredLessons.length;
+      const currentStillVisible = filteredStages.some((item) => item.index === selectedStageIndex);
+      if (!currentStillVisible) selectedStageIndex = filteredStages[0].index;
 
-        const shouldOpen = tokens.length ? "open" : "";
-        const lessonWord = filteredLessons.length === 1 ? "ficha" : "fichas";
+      const selectedItem = filteredStages.find((item) => item.index === selectedStageIndex) || filteredStages[0];
+      const selectedStage = selectedItem.stage;
+
+      stageList.innerHTML = filteredStages.map((item) => {
+        const isActive = item.index === selectedStageIndex ? "is-active" : "";
+        const lessonWord = item.lessons.length === 1 ? "ficha" : "fichas";
 
         return `
-          <details class="stage" ${shouldOpen}>
-            <summary>
-              <span class="stage-number">${String(stageIndex + 1).padStart(2, "0")}</span>
-              <div class="stage-main">
-                <span class="stage-kicker">Etapa ${stageIndex + 1}</span>
-                <h2>${stage.title}</h2>
-                <p>${stage.description}</p>
-              </div>
-              <div class="stage-side">
-                <span class="stage-count">${filteredLessons.length} ${lessonWord}</span>
-                <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </div>
-            </summary>
-            <div class="lessons">
-              ${filteredLessons.map((lesson, lessonIndex) => `
-                <a class="lesson" href="${lesson.url}" target="_blank" rel="noopener noreferrer">
-                  <span class="lesson-order">${String(lessonIndex + 1).padStart(2, "0")}</span>
-                  <span>
-                    <span class="lesson-title">${lesson.title}</span>
-                    <span class="lesson-note">${lesson.note}</span>
-                  </span>
-                  <span class="lesson-cta">Abrir</span>
-                </a>
-              `).join("")}
-            </div>
-          </details>
+          <button class="stage-button ${isActive}" type="button" data-stage-index="${item.index}">
+            <span class="number">${String(item.index + 1).padStart(2, "0")}</span>
+            <span class="stage-name">
+              <strong>${item.stage.title}</strong>
+              <span>${item.stage.description}</span>
+            </span>
+            <span class="stage-count">${item.lessons.length} ${lessonWord}</span>
+          </button>
         `;
       }).join("");
 
-      stageList.innerHTML = html;
-      bindAccordionBehavior();
-      emptyState.classList.toggle("visible", visibleLessons === 0);
+      document.querySelectorAll(".stage-button").forEach((button) => {
+        button.addEventListener("click", () => selectStage(Number(button.dataset.stageIndex)));
+      });
+
+      selectedKicker.textContent = `Etapa ${selectedItem.index + 1}`;
+      selectedTitle.textContent = selectedStage.title;
+      selectedDescription.textContent = selectedStage.description;
+
+      lessonList.innerHTML = selectedItem.lessons.map((lesson) => `
+        <a class="lesson" href="${lesson.url}" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="lesson-title">${lesson.title}</span>
+            <span class="lesson-note">${lesson.note}</span>
+          </span>
+          <span class="open-label">Abrir ficha</span>
+        </a>
+      `).join("");
 
       if (!tokens.length) {
-        resultLine.textContent = "Clique em uma etapa para visualizar as fichas.";
-      } else if (visibleLessons === 0) {
-        resultLine.textContent = "Nenhum resultado encontrado.";
+        resultLine.textContent = "Selecione uma etapa à esquerda para ver as fichas.";
       } else {
         const lessonText = visibleLessons === 1 ? "ficha encontrada" : "fichas encontradas";
-        const stageText = visibleStages === 1 ? "etapa" : "etapas";
-        resultLine.textContent = `${visibleLessons} ${lessonText} em ${visibleStages} ${stageText}.`;
+        const stageText = filteredStages.length === 1 ? "etapa" : "etapas";
+        resultLine.textContent = `${visibleLessons} ${lessonText} em ${filteredStages.length} ${stageText}.`;
       }
     }
 
@@ -886,24 +820,9 @@
 
     clearSearch.addEventListener("click", () => {
       searchInput.value = "";
+      selectedStageIndex = 0;
       searchInput.focus();
       render();
-    });
-
-    openAll.addEventListener("click", () => {
-      isBulkAction = true;
-      document.querySelectorAll(".stage").forEach((stage) => {
-        stage.setAttribute("open", "");
-      });
-      isBulkAction = false;
-    });
-
-    closeAll.addEventListener("click", () => {
-      isBulkAction = true;
-      document.querySelectorAll(".stage").forEach((stage) => {
-        stage.removeAttribute("open");
-      });
-      isBulkAction = false;
     });
 
     render();
