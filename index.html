@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -174,6 +175,56 @@
     .clear-btn:focus-visible {
       color: var(--text);
       outline: none;
+    }
+
+
+    .mobile-stage-toggle,
+    .mobile-stage-close,
+    .stage-backdrop {
+      display: none;
+    }
+
+    .mobile-stage-toggle {
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      min-height: 44px;
+      margin: 0 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      color: var(--text);
+      box-shadow: 0 4px 14px rgba(17, 24, 39, 0.035);
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .hamburger-icon {
+      width: 18px;
+      height: 14px;
+      display: inline-grid;
+      gap: 4px;
+    }
+
+    .hamburger-icon span {
+      display: block;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .mobile-stage-close {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 10px;
+      background: #f2f4f7;
+      color: var(--muted);
+      font-size: 1.25rem;
+      line-height: 1;
+      font-weight: 800;
     }
 
     .result-line {
@@ -452,6 +503,68 @@
       .open-label {
         width: fit-content;
       }
+
+      .mobile-stage-toggle {
+        display: inline-flex;
+      }
+
+      .stage-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 55;
+        border: 0;
+        padding: 0;
+        background: rgba(15, 23, 42, 0.38);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 180ms ease;
+      }
+
+      body.stage-menu-open .stage-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      body.stage-menu-open {
+        overflow: hidden;
+      }
+
+      .stage-column {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 60;
+        width: min(86vw, 360px);
+        max-height: 100dvh;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        overflow-y: auto;
+        box-shadow: 18px 0 40px rgba(15, 23, 42, 0.22);
+        transform: translateX(calc(-100% - 18px));
+        transition: transform 220ms ease;
+      }
+
+      body.stage-menu-open .stage-column {
+        transform: translateX(0);
+      }
+
+      .column-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .mobile-stage-close {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .lesson-panel {
+        width: 100%;
+      }
+
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -488,11 +601,25 @@
       <p class="result-line" id="resultLine" aria-live="polite">Selecione uma etapa à esquerda para ver as fichas.</p>
     </section>
 
+    <button class="mobile-stage-toggle" id="mobileStageToggle" type="button" aria-controls="stageColumn" aria-expanded="false">
+      <span class="hamburger-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <span>Etapas</span>
+    </button>
+
+    <button class="stage-backdrop" id="stageBackdrop" type="button" aria-label="Fechar menu de etapas"></button>
+
     <section class="two-column-layout" id="twoColumnLayout" aria-label="Etapas e fichas de estudo">
-      <aside class="stage-column" aria-label="Etapas da trilha">
+      <aside class="stage-column" id="stageColumn" aria-label="Etapas da trilha" tabindex="-1">
         <div class="column-head">
-          <h2>Etapas</h2>
-          <p>Escolha uma categoria.</p>
+          <div>
+            <h2>Etapas</h2>
+            <p>Escolha uma categoria.</p>
+          </div>
+          <button class="mobile-stage-close" id="mobileStageClose" type="button" aria-label="Fechar menu de etapas">×</button>
         </div>
         <div class="stage-list" id="stageList"></div>
       </aside>
@@ -700,12 +827,32 @@
     const selectedKicker = document.getElementById("selectedKicker");
     const selectedTitle = document.getElementById("selectedTitle");
     const selectedDescription = document.getElementById("selectedDescription");
+    const mobileStageToggle = document.getElementById("mobileStageToggle");
+    const mobileStageClose = document.getElementById("mobileStageClose");
+    const stageBackdrop = document.getElementById("stageBackdrop");
+    const stageColumn = document.getElementById("stageColumn");
 
     let selectedStageIndex = 0;
 
     const totalLessons = stages.reduce((sum, stage) => sum + stage.lessons.length, 0);
     stageTotal.textContent = stages.length;
     lessonTotal.textContent = totalLessons;
+
+    function isSmartphone() {
+      return window.matchMedia("(max-width: 640px)").matches;
+    }
+
+    function openStageMenu() {
+      if (!isSmartphone()) return;
+      document.body.classList.add("stage-menu-open");
+      mobileStageToggle.setAttribute("aria-expanded", "true");
+      stageColumn.focus();
+    }
+
+    function closeStageMenu() {
+      document.body.classList.remove("stage-menu-open");
+      mobileStageToggle.setAttribute("aria-expanded", "false");
+    }
 
     function normalizeText(text) {
       return text
@@ -747,6 +894,7 @@
     function selectStage(index) {
       selectedStageIndex = index;
       render();
+      closeStageMenu();
     }
 
     function render() {
@@ -761,11 +909,14 @@
         twoColumnLayout.style.display = "none";
         emptyState.classList.add("visible");
         resultLine.textContent = "Nenhum resultado encontrado.";
+        mobileStageToggle.hidden = true;
+        closeStageMenu();
         return;
       }
 
       twoColumnLayout.style.display = "grid";
       emptyState.classList.remove("visible");
+      mobileStageToggle.hidden = false;
 
       const currentStillVisible = filteredStages.some((item) => item.index === selectedStageIndex);
       if (!currentStillVisible) selectedStageIndex = filteredStages[0].index;
@@ -808,7 +959,9 @@
       `).join("");
 
       if (!tokens.length) {
-        resultLine.textContent = "Selecione uma etapa à esquerda para ver as fichas.";
+        resultLine.textContent = isSmartphone()
+          ? "Toque no botão Etapas para escolher uma categoria e ver as fichas."
+          : "Selecione uma etapa à esquerda para ver as fichas.";
       } else {
         const lessonText = visibleLessons === 1 ? "ficha encontrada" : "fichas encontradas";
         const stageText = filteredStages.length === 1 ? "etapa" : "etapas";
@@ -822,6 +975,19 @@
       searchInput.value = "";
       selectedStageIndex = 0;
       searchInput.focus();
+      render();
+    });
+
+    mobileStageToggle.addEventListener("click", openStageMenu);
+    mobileStageClose.addEventListener("click", closeStageMenu);
+    stageBackdrop.addEventListener("click", closeStageMenu);
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeStageMenu();
+    });
+
+    window.addEventListener("resize", () => {
+      if (!isSmartphone()) closeStageMenu();
       render();
     });
 
